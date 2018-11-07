@@ -1,0 +1,14 @@
+<div class="container">
+<h1></h1>
+  <div class="center jumbotron">
+<div class="form-group">
+<%= form_for @gossip, url: {action: "create"} do |f| %>
+    Le titre de ta rumeur:
+    <%= f.text_field :title, class: 'form-control' %><br>
+    Ta rumeur:
+    <%= f.text_area :content, class: 'form-control' %><br>
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+<% end %>
+</div>
+</div>
+</div>
