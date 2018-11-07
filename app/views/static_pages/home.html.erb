@@ -1,15 +1,19 @@
 
 	<div class="center jumbotron">
+      <%= image_tag('gossip.png', width:"430", class:"rounded float-right")%>
 
-  <h1>Bienvenue au beau pays des secrets</h1>
+  <% if current_user %>
+  <h1>Tu es bien sur ton profil :)</h1>
+  <h3>
+    As-tu un secret ? </h3><br>
+  	<%= link_to "Écrire un nouveau gossip", new_user_gossip_path(current_user.id), class: "btn btn-lg btn-info" %>
+  	<%= link_to "Voir les derniers gossips", user_gossips_path(current_user.id), class: "btn btn-lg btn-info" %>
+
+  <% else %>
+    <h1>Bienvenue au beau pays des secrets</h1>
   <h3>
     Ici, tu peux diffuser les plus belles rumeurs  🎓  
   </h3><br>
-
-  <% if current_user %>
-  	<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-lg btn-info" %>
-  	<%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-lg btn-info" %>
-  <% else %>
   <%= link_to "s'identifier", new_user_session_path, class: "btn btn-lg btn-info" %>
   <%= link_to "s'inscrire", new_user_registration_path, class: "btn btn-lg btn-info" %>
 

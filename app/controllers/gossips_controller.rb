@@ -1,11 +1,14 @@
 class GossipsController < ApplicationController
 def index
     @gossips = Gossip.all
+    @user= User.find(params[:user_id])
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @gossip=Gossip.find(params[:id])
+    @user= @gossip.user(params[:username])
   end
 
   # GET /users/new
@@ -20,8 +23,10 @@ def index
   # POST /users
   # POST /users.json
   def create
-    @gossip = Gossip.create(gossip_params)
-
+    @gossip = Gossip.new(gossip_params)
+    @gossip.user = current_user
+    @gossip.save
+    redirect_to "/users/#{current_user.id}/gossips"
   end
 
   # PATCH/PUT /users/1
